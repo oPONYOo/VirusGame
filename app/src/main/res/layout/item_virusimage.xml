@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardLayout"
+    android:layout_width="@dimen/dp_249"
+    android:layout_height="@dimen/dp_249"
+    android:background="@drawable/img_game_memory_001">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/numberTxtView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="#CF6E90"
+        android:textSize="@dimen/sp_100"
+        android:paddingTop="@dimen/dp_30"
+        android:fontFamily="@font/maplestory_oft_bold"
+        tools:text="1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
