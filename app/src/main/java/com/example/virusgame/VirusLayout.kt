@@ -1,24 +1,23 @@
 package com.example.virusgame
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
-class VirusLayout(context: Context, attrs: AttributeSet? = null) : ConstraintLayout(context, attrs) {
+class VirusLayout(context: MainActivity, attrs: AttributeSet? = null) : ConstraintLayout(context, attrs) {
     private var mTxtView: AppCompatTextView
     private var mCardLayout: ConstraintLayout
-    private var mQuestNum = 0
+    private var mQuestNum =" 0"
     private var mX = 0.0f
     private var mY = 0.0f
     var mWidth = 0
+    private var check = 0
+    private lateinit var tag: String
 
     init {
         val inflaterService = Context.LAYOUT_INFLATER_SERVICE
@@ -31,19 +30,20 @@ class VirusLayout(context: Context, attrs: AttributeSet? = null) : ConstraintLay
         mWidth = view.layoutParams.width
     }
 
-    fun setQuestNum(questNum: Int): VirusLayout {
+    fun setQuestNum(questNum: String): VirusLayout {
         this.mQuestNum = questNum
 
         return this
     }
 
-    fun setQuestImg(questNum: Bitmap, difficulty: Boolean): VirusLayout{
-        if (!difficulty){
-            this.mCardLayout.background = BitmapDrawable(resources, questNum)
-        }
+
+
+    fun setQuestImg(): VirusLayout{
+        this.mCardLayout.setBackgroundResource(R.drawable.img_game_memory_001)
         return this
 
     }
+
 
 
     fun setXY(x: Float, y: Float): VirusLayout {
@@ -55,7 +55,7 @@ class VirusLayout(context: Context, attrs: AttributeSet? = null) : ConstraintLay
     fun setFinally() {
         x = this.mX
         y = this.mY
-        if (this.mQuestNum !=0){
+        if (this.mQuestNum != ""){
             mTxtView.text = this.mQuestNum.toString()
         }else{
             mTxtView.text = "  "
@@ -80,17 +80,18 @@ class VirusLayout(context: Context, attrs: AttributeSet? = null) : ConstraintLay
 
 
 
-    fun cardVisible(){
-        if (this.mQuestNum !=0){
-            mCardLayout.visibility = View.VISIBLE
-        }else{
-            mCardLayout.visibility = View.INVISIBLE
-        }
-    }
+//    fun cardVisible(){
+//        if (this.mQuestNum !=0){
+//            mCardLayout.visibility = View.VISIBLE
+//        }else{
+//            mCardLayout.visibility = View.INVISIBLE
+//        }
+//    }
 
 
     fun setVisible(visible: Boolean) {
-        mTxtView.visibility = if(visible) View.VISIBLE else View.GONE
+        mCardLayout.visibility = if(visible) View.VISIBLE else View.GONE
+        mTxtView.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
 }

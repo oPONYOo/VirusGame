@@ -59,7 +59,7 @@ class OutlineTextView @JvmOverloads constructor(
 
     fun stopAnimation() {
         Log.e("stip", "animatino")
-//        valueAnimator!!.pause()
+        valueAnimator!!.pause()
         valueAnimator!!.removeUpdateListener(updateListener)
         valueAnimator!!.end()
         valueAnimator!!.cancel()

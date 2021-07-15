@@ -17,6 +17,24 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1단계" />
 
+        <com.example.virusgame.customview.OutlineTextView
+            android:id="@+id/timerTxtView"
+            android:transitionName="text2"
+            app:layout_constraintTop_toTopOf="@id/showMenuImgView"
+            app:layout_constraintBottom_toBottomOf="@id/showMenuImgView"
+            app:layout_constraintEnd_toStartOf="@id/showMenuImgView"
+            android:layout_marginEnd="@dimen/sp_24"
+            android:textColor="@color/white"
+            app:textStroke="true"
+            app:textStrokeWidth="@dimen/dp_4"
+            app:textStrokeColor="@color/color_text"
+            android:text="00 : 04"
+            android:textSize="@dimen/sp_48"
+            android:fontFamily="@font/aabstract_groovy"
+            android:padding="@dimen/dp_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/showMenuImgView"
@@ -36,9 +54,25 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/screenView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="#AD302727"
+            android:visibility="invisible">
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="다시 풀어보세요."
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_200"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
