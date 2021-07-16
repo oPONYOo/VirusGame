@@ -33,7 +33,7 @@ class MainActivity : BaseActivity() {
     private var randomlist2 = ArrayList<Int>()
     private var arraylist = ArrayList<String>()
     private var count = 1
-    var level = 1
+    private var level = 6
 
     private var lastNum = 10
     private var num = ""
@@ -162,8 +162,7 @@ class MainActivity : BaseActivity() {
 
         when (level) {
             1, 2 -> initNum(9)
-            3, 5 -> initNum(20)
-            4 -> initNum(15)
+            3, 4, 5 -> initNum(19)
             6, 7, 8 -> initNum(30)
         }
 
@@ -172,183 +171,115 @@ class MainActivity : BaseActivity() {
 
     private fun initNum(max: Int) {
         val rand = Random()
-        val randNum1 = rand.nextInt(max - 1) + 1
-        val randNum2 = rand.nextInt(max - 1) + 1
+        val randNum1 = (2 until max).random()
+        val randNum2 = (2 until max).random()
+        val randNum3 = (2 until max).random()
         when (level) {
             1 -> {
                 num1 = randNum1.toString()
                 num2 = num1
-
-                if (randNum2 > 1 && !randNum2.toString().contains(num1)) {
-                    num3 = randNum2.toString()
-                } else {
+                num3 = randNum2.toString()
+                do {
+                    randomlist = ArrayList()
                     for (i in 2 until lastNum) {
                         num = i.toString()
                         randomlist.add(num)
-                        randomlist.shuffle()
                     }
-                    if (randomlist.contains(num1)) {
-                        randomlist.remove(num1)
-                    }
+                    randomlist.shuffle()
+                    Log.e("randomList", "${randomlist}")
                     num3 = randomlist[0]
-                }
-
-                val randNum3 = rand.nextInt(num3.toInt() - 1) + 1
+                } while(num1.toInt() == num3.toInt())
+                val randNum3 = (1 until num3.toInt()).random()
                 val calculationNum = num3.toInt() - randNum3
                 num4 = randNum3.toString().plus(sign).plus(calculationNum)
-
-
             }
             2 -> {
-                if (randNum1 > 1) {
-                    num1 = randNum1.toString()
-                } else {
+                num1 = randNum1.toString()
+                val randNum =(1 until num1.toInt() ).random()
+                val calculationNum2 = num1.toInt() - randNum
+                num2 = randNum.toString().plus(sign).plus(calculationNum2)
+                num3 = randNum2.toString()
+                do {
+                    randomlist = ArrayList()
                     for (i in 2 until lastNum) {
                         num = i.toString()
                         randomlist.add(num)
-                        randomlist.shuffle()
                     }
-                    num1 = randomlist[0]
-                }
-                val randNum2 = rand.nextInt(num1.toInt() - 1) + 1
-                val calculationNum2 = num1.toInt() - randNum2
-                num2 = randNum2.toString().plus(sign).plus(calculationNum2)
-
-
-                if (randNum2 > 1 && !randNum2.toString().contains(num1)) {
-                    num3 = randNum2.toString()
-                } else {
-                    for (i in 2 until lastNum) {
-                        num = i.toString()
-                        randomlist.add(num)
-                        randomlist.shuffle()
-                    }
-                    if (randomlist.contains(num1)) {
-                        randomlist.remove(num1)
-                    }
+                    randomlist.shuffle()
                     num3 = randomlist[0]
-                }
-                val randNum3 = rand.nextInt(num3.toInt() - 1) + 1
-                val calculationNum = num3.toInt() - randNum3
-                num4 = randNum3.toString().plus(sign).plus(calculationNum)
+                    Log.e("randomlist", "$randomlist")
+                } while(num1.toInt() == num3.toInt())
+                val randNum4 = (1 until num3.toInt()).random()
+                val calculationNum = num3.toInt() - randNum4
+                num4 = randNum4.toString().plus(sign).plus(calculationNum)
 
             }
             3 -> {
-                val randNum1 = rand.nextInt(max - 10) + 10
-                if (randNum1 > 10) {
-                    num1 = randNum1.toString()
-                } else {
-                    for (i in 10 until max) {
+                num1 = randNum1.toString()
+                val randNum =(1 until num1.toInt() ).random()
+                val calculationNum2 = num1.toInt() - randNum
+                num2 = randNum.toString().plus(sign).plus(calculationNum2)
+                num3 = randNum2.toString()
+                num5 = randNum3.toString()
+                do {
+                    randomlist = ArrayList()
+                    for (i in 2 until 20) {
                         num = i.toString()
                         randomlist.add(num)
-                        randomlist.shuffle()
                     }
-                    num1 = randomlist[0]
-                }
-                val randNum2 = rand.nextInt(num1.toInt() - 1) + 1
-                val calculationNum2 = num1.toInt() - randNum2
-                num2 = randNum2.toString().plus(sign).plus(calculationNum2)
-
-
-                if (randNum2 > 10 && !randNum2.toString().contains(num1)) {
-                    num3 = randNum2.toString()
-                } else {
-                    for (i in 10 until max) {
-                        num = i.toString()
-                        randomlist.add(num)
-                        randomlist.shuffle()
-                    }
-                    if (randomlist.contains(num1)) {
-                        randomlist.remove(num1)
-                    }
+                    randomlist.shuffle()
                     num3 = randomlist[0]
-                }
-                val randNum3 = rand.nextInt(num3.toInt() - 1) + 1
-                val calculationNum = num3.toInt() - randNum3
-                num4 = randNum3.toString().plus(sign).plus(calculationNum)
+                    num5 = randomlist[1]
+                    Log.e("randomlist", "$randomlist")
+                } while(num1 == num3 || num3 == num5 || num1 == num5)
+                val randNum4 = (1 until num3.toInt()).random()
+                val calculationNum = num3.toInt() - randNum4
+                val randNum5 = (1 until num5.toInt()).random()
+                val calculationNum5 = num5.toInt() - randNum5
+                num4 = randNum4.toString().plus(sign).plus(calculationNum)
+                num6 = randNum5.toString().plus(sign).plus(calculationNum5)
 
-                if (randNum3 > 10 && !randNum3.toString().contains(num1) && !randNum3.toString()
-                        .contains(num3)
-                ) {
-                    num5 = randNum3.toString()
-                } else {
-                    for (i in 10 until max) {
-                        num = i.toString()
-                        randomlist.add(num)
-                        randomlist.shuffle()
-                    }
-                    if (randomlist.contains(num1) && randomlist.contains(num3)) {
-                        randomlist.remove(num1)
-                        randomlist.remove(num3)
-                    }
-                    num5 = randomlist[0]
-                }
-                Log.e("num5", num5)
-                val randNum4 = rand.nextInt(num5.toInt() - 1) + 1
-                val calculationNum4 = num5.toInt() - randNum4
-                Log.e("calcul", "$calculationNum4")
-                num6 = randNum4.toString().plus(sign).plus(calculationNum4)
+
             }
             4 -> {
-                if (randNum1 > 1) {
-                    num1 = randNum1.toString()
-                } else {
-                    for (i in 2 until max) {
+                num1 = randNum1.toString()
+                val randNum =(1 until num1.toInt() ).random()
+                val calculationNum2 = num1.toInt() - randNum
+                num2 = randNum.toString().plus(sign).plus(calculationNum2)
+                num3 = randNum2.toString()
+                num5 = (2 until 15).random().toString()
+                do {
+                    randomlist = ArrayList()
+                    for (i in 2 until 20) {
                         num = i.toString()
                         randomlist.add(num)
-                        randomlist.shuffle()
                     }
-                    num1 = randomlist[0]
-                }
-                val randNum2 = rand.nextInt(num1.toInt() - 1) + 1
-                val calculationNum2 = num1.toInt() + randNum2
-                num2 = calculationNum2.toString().plus(sign2).plus(randNum2)
-
-
-                if (randNum2 > 1 && !randNum2.toString().contains(num1)) {
-                    num3 = randNum2.toString()
-                } else {
-                    for (i in 2 until max) {
-                        num = i.toString()
-                        randomlist.add(num)
-                        randomlist.shuffle()
+                    val randomlistSec = ArrayList<String>()
+                    for (i in 2 until 15) {
+                        randomlistSec.add(i.toString())
                     }
-                    if (randomlist.contains(num1)) {
-                        randomlist.remove(num1)
-                    }
+                    randomlist.shuffle()
+                    randomlistSec.shuffle()
                     num3 = randomlist[0]
-                }
-                val randNum3 = rand.nextInt(num3.toInt() - 1) + 1
-                val calculationNum = num3.toInt() + randNum3
-                num4 = calculationNum.toString().plus(sign2).plus(randNum3)
-
-                if (randNum3 > 1 && !randNum3.toString().contains(num1) && !randNum3.toString()
-                        .contains(num3)
-                ) {
-                    num5 = randNum3.toString()
-                } else {
-                    for (i in 2 until max) {
-                        num = i.toString()
-                        randomlist.add(num)
-                        randomlist.shuffle()
-                    }
-                    if (randomlist.contains(num1) && randomlist.contains(num3)) {
-                        randomlist.remove(num1)
-                        randomlist.remove(num3)
-                    }
-                    num5 = randomlist[0]
-                }
-                Log.e("num5", num5)
-                val randNum4 = rand.nextInt(num5.toInt() - 1) + 1
-                val calculationNum4 = num5.toInt() + randNum4
-                Log.e("calcul", "$calculationNum4")
-                num6 = calculationNum4.toString().plus(sign2).plus(randNum4)
+                    num5 = randomlistSec[0]
+                    Log.e("randomlist2", "$randomlistSec")
+                    Log.e("randomlist", "$randomlist")
+                } while(num1 == num3 || num3 == num5 || num1 == num5)
+                val randNum4 = (1 until num3.toInt()).random()
+                val calculationNum = num3.toInt() - randNum4
+                val randNum5 = (1 until num5.toInt()).random()
+                val calculationNum5 = num5.toInt() - randNum5
+                num4 = randNum4.toString().plus(sign).plus(calculationNum)
+                num6 = randNum5.toString().plus(sign).plus(calculationNum5)
+                val randNum6 = (1 until num5.toInt()).random()
+                val calculationNum6 = num5.toInt() + randNum6
+                Log.e("calcul", "$calculationNum6")
+                num6 = calculationNum6.toString().plus(sign2).plus(randNum6)
             }
 
             5 -> {
-                var randNum = rand.nextInt(max - 2) + 2
-                num1 = randNum.toString()
-                var rand1 = rand.nextInt(num1.toInt() - 1) + 1
+                num1 = randNum1.toString()
+                var rand1 = (1 until num1.toInt() ).random()
                 Log.e("rand1", "$rand1")
                 var rand2 = rand.nextInt(rand1)
                 Log.e("rand2", "$rand2")
@@ -357,9 +288,22 @@ class MainActivity : BaseActivity() {
                 num2 = rand1.toString().plus(sign2).plus(rand2).plus(sign)
                     .plus(calculationNum1)
 
-                randNum = rand.nextInt(max - 2) + 2
-                num3 = randNum.toString()
-                rand1 = rand.nextInt(num3.toInt() - 1) + 1
+                num3 = randNum2.toString()
+                num5 = randNum3.toString()
+                do {
+                    randomlist = ArrayList()
+                    for (i in 2 until 20) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    num3 = randomlist[0]
+                    num5 = randomlist[1]
+                    Log.e("randomlist", "$randomlist")
+                } while(num1 == num3 || num3 == num5 || num1 == num5)
+
+
+                rand1 = (1 until num3.toInt() ).random()
                 Log.e("rand1", "$rand1")
                 rand2 = rand.nextInt(rand1)
                 Log.e("rand2", "$rand2")
@@ -368,15 +312,25 @@ class MainActivity : BaseActivity() {
                 num4 = rand1.toString().plus(sign2).plus(rand2).plus(sign)
                     .plus(calculationNum1)
 
-                randNum = rand.nextInt(max - 2) + 2
-                num5 = randNum.toString()
-                rand1 = rand.nextInt(num5.toInt() - 1) + 10
-                Log.e("rand1", "$rand1")
-                rand2 = rand.nextInt(rand1)
-                Log.e("rand2", "$rand2")
-                calculationNum1 = (rand1 + rand2) - num5.toInt()
+                var rand3 = (1 until max).random()
+                Log.e("rand3", "$rand3")
+                var rand4 = (1 until max).random()
+                Log.e("rand4", "$rand4")
+                do{
+                    randomlist = ArrayList()
+                    for (i in 2 until 20) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    rand3 = randomlist[0].toInt()
+                    rand4 = randomlist[1].toInt()
+                    Log.e("rand3", "${rand3}")
+                    Log.e("rand4", "${rand4}")
+                }while ((rand3+rand4)<num5.toInt())
+                calculationNum1 = (rand3 + rand4) - num5.toInt()
                 Log.e("calculationNum1", "$calculationNum1")
-                num6 = rand1.toString().plus(sign).plus(rand2).plus(sign2)
+                num6 = rand3.toString().plus(sign).plus(rand4).plus(sign2)
                     .plus(calculationNum1)
 
             }
@@ -738,7 +692,11 @@ class MainActivity : BaseActivity() {
                 choiceNum = spiltNum[0].toInt() + spiltNum[1].toInt()
             }
             4 -> {
-                choiceNum = spiltNum[0].toInt() - spiltNum[1].toInt()
+                choiceNum = if (arraylist.indexOf(num) == arraylist.lastIndex) {
+                    spiltNum[0].toInt() - spiltNum[1].toInt()
+                } else {
+                    spiltNum[0].toInt() + spiltNum[1].toInt()
+                }
             }
             5 -> {
                 choiceNum = if (arraylist.indexOf(num) == arraylist.lastIndex) {
