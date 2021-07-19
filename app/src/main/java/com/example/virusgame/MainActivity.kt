@@ -33,7 +33,7 @@ class MainActivity : BaseActivity() {
     private var randomlist2 = ArrayList<Int>()
     private var arraylist = ArrayList<String>()
     private var count = 1
-    private var level = 6
+    private var level = 8
 
     private var lastNum = 10
     private var num = ""
@@ -163,7 +163,7 @@ class MainActivity : BaseActivity() {
         when (level) {
             1, 2 -> initNum(9)
             3, 4, 5 -> initNum(19)
-            6, 7, 8 -> initNum(30)
+            6, 7, 8 -> initNum(29)
         }
 
 
@@ -335,18 +335,26 @@ class MainActivity : BaseActivity() {
 
             }
             6 -> {
-                var randNum = rand.nextInt(max - 1) + 1
-                num1 = randNum.toString()
-                var rand1 = rand.nextInt(randNum - 1) + 1
-                var rand2 = rand.nextInt(randNum - 1) + 1
-                var rand3 = rand.nextInt(randNum - 1) + 1
-                if (rand3 + (rand1 * rand2) > num1.toInt()) {
-                    calculationNum1 = rand3 + (rand1 * rand2)
-                } else {
-                    rand2 = rand.nextInt(max) + 6
-                    rand3 = rand.nextInt(max) + 6
-                    calculationNum1 = rand3 + (rand1 * rand2)
-                }
+                num1 = randNum1.toString()
+                var rand1 = (1 until max).random()
+                var rand2 = (1 until max).random()
+                var rand3 = (1 until max).random()
+
+                do{
+                    randomlist = ArrayList()
+                    for (i in 2 until 30) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    rand1 = randomlist[0].toInt()
+                    rand2 = randomlist[1].toInt()
+                    rand3 = randomlist[2].toInt()
+                    Log.e("rand1", "${rand1}")
+                    Log.e("rand2", "${rand2}")
+                    Log.e("rand3", "${rand3}")
+                }while (rand3 + (rand1 * rand2) < num1.toInt())
+                calculationNum1 = rand3 + (rand1 * rand2)
                 calculationNum2 = calculationNum1 - num1.toInt()
                 Log.e("calculationNum1", "$calculationNum1")
                 num2 = rand3.toString().plus(sign).plus("(")
@@ -354,18 +362,38 @@ class MainActivity : BaseActivity() {
                     .plus(calculationNum2)
 
 
-                randNum = rand.nextInt(max - 1) + 1
-                num3 = randNum.toString()
-                rand1 = rand.nextInt(randNum - 1) + 1
-                rand2 = rand.nextInt(randNum - 1) + 1
-                rand3 = rand.nextInt(randNum - 1) + 1
-                if (rand3 + (rand1 * rand2) > num3.toInt()) {
-                    calculationNum1 = rand3 + (rand1 * rand2)
-                } else {
-                    rand2 = rand.nextInt(max) + 6
-                    rand3 = rand.nextInt(max) + 6
-                    calculationNum1 = rand3 + (rand1 * rand2)
-                }
+                num3 = randNum2.toString()
+                num5 = randNum3.toString()
+                do {
+                    randomlist = ArrayList()
+                    for (i in 2 until 30) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    num3 = randomlist[0]
+                    num5 = randomlist[1]
+                    Log.e("randomlist", "$randomlist")
+                } while(num1 == num3 || num3 == num5 || num1 == num5)
+
+                rand1 = (1 until max).random()
+                rand2 = (1 until max).random()
+                rand3 = (1 until max).random()
+                do{
+                    randomlist = ArrayList()
+                    for (i in 2 until 30) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    rand1 = randomlist[0].toInt()
+                    rand2 = randomlist[1].toInt()
+                    rand3 = randomlist[2].toInt()
+                    Log.e("rand1", "${rand1}")
+                    Log.e("rand2", "${rand2}")
+                    Log.e("rand3", "${rand3}")
+                }while (rand3 + (rand1 * rand2) < num3.toInt())
+                calculationNum1 = rand3 + (rand1 * rand2)
                 calculationNum2 = calculationNum1 - num3.toInt()
                 Log.e("calculationNum1", "$calculationNum1")
                 num4 = rand3.toString().plus(sign).plus("(")
@@ -373,18 +401,25 @@ class MainActivity : BaseActivity() {
                     .plus(calculationNum2)
 
 
-                randNum = rand.nextInt(max - 1) + 1
-                num5 = randNum.toString()
-                rand1 = rand.nextInt(randNum - 1) + 1
-                rand2 = rand.nextInt(randNum - 1) + 1
-                rand3 = rand.nextInt(randNum - 1) + 1
-                if (((rand1 * rand2) + rand3) > num5.toInt()) {
-                    calculationNum1 = ((rand1 * rand2) + rand3)
-                } else {
-                    rand2 = rand.nextInt(max) + 6
-                    rand3 = rand.nextInt(max) + 6
-                    calculationNum1 = ((rand1 * rand2) + rand3)
-                }
+                rand1 = (1 until max).random()
+                rand2 = (1 until max).random()
+                rand3 = (1 until max).random()
+                do{
+                    randomlist = ArrayList()
+                    for (i in 2 until 30) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    rand1 = randomlist[0].toInt()
+                    rand2 = randomlist[1].toInt()
+                    rand3 = randomlist[2].toInt()
+                }while (((rand1 * rand2) + rand3) < num5.toInt())
+                Log.e("rand1", "$rand1")
+                Log.e("rand2", "$rand2")
+                Log.e("rand3", "$rand3")
+
+                calculationNum1 = ((rand1 * rand2) + rand3)
                 calculationNum2 = calculationNum1 - num5.toInt()
                 Log.e("calculationNum1", "$calculationNum1")
                 num6 = "(".plus(rand1.toString()).plus("×").plus(rand2).plus(")").plus(sign)
@@ -392,10 +427,9 @@ class MainActivity : BaseActivity() {
             }
             7 -> {
                 randomlist2 = ArrayList()
-                var randNum = rand.nextInt(max - 1) + 1//24
-                num1 = randNum.toString()
+                num1 = randNum1.toString()
                 Log.e("num1", num1)
-                var rand1 = rand.nextInt(10 - 1) + 1//5
+                var rand1 = (1 until 10).random()
                 Log.e("rand1", "${rand1}")
                 calculationNum1 = num1.toInt() * rand1//24*5=120 -> 10,12
                 Log.e("calculationNum1", "${calculationNum1}")
@@ -416,8 +450,20 @@ class MainActivity : BaseActivity() {
                         .plus(rand1)
 
                 randomlist2 = ArrayList()
-                randNum = rand.nextInt(max - 1) + 1
-                rand1 = rand.nextInt(10 - 1) + 1
+                var randNum = (1 until max).random()
+                num5 = randNum2.toString()
+                do {
+                    randomlist = ArrayList()
+                    for (i in 2 until 30) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    randNum = randomlist[0].toInt()
+                    num5 = randomlist[1]
+                    Log.e("randomlist", "$randomlist")
+                } while(num1.toInt() == randNum || num1 == num5 || randNum == num5.toInt())
+                rand1 = (1 until 10).random()
                 calculationNum1 = randNum * rand1
 
                 for (i in 1..calculationNum1) {
@@ -442,20 +488,29 @@ class MainActivity : BaseActivity() {
 
 
                 randomlist2 = ArrayList()
-                randNum = rand.nextInt(max - 15) + 15
-                num5 = randNum.toString()
                 Log.e("num5", num5)
-                rand1 = rand.nextInt(max - 2) + 2
+                rand1 = (2 until 15).random()
                 calculationNum1 = num5.toInt() * rand1
                 Log.e("C", "$calculationNum1")
-                for (i in 1..randNum) {
-                    if (randNum % i == 0) {
+                for (i in 1..randNum2) {
+                    if (randNum2 % i == 0) {
                         randomlist2.add(i)
                     }
                 }
                 randomlist2.shuffle()
                 Log.e("Rand3", "$randomlist2")
-                rand3 = rand.nextInt(max - 15) + 15
+                rand3 = (1 until 5).random()
+
+                do {
+                    randomlist = ArrayList()
+                    for (i in 1 until 5) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    rand3 = randomlist[0].toInt()
+                    Log.e("randomlist", "$randomlist")
+                } while((calculationNum1 / randomlist2[0]) * rand3 < num5.toInt())
                 calculationNum2 = (calculationNum1 / randomlist2[0]) * rand3 - num5.toInt()
                 num6 =
                     calculationNum1.toString().plus("÷").plus(randomlist2[0]).plus("×").plus(rand3)
@@ -464,27 +519,28 @@ class MainActivity : BaseActivity() {
             }
             8 -> {
                 randomlist2 = ArrayList()
-                var randNum = rand.nextInt(max - 2) + 2//24
-                var rand1 = rand.nextInt(5 - 1) + 1//5
-                var secRand1 = rand.nextInt(5 - 1) + 1
+                var rNum1 = (2 until max).random()
+                var rand1 = (1 until 5).random()
+                var secRand1 = (1 until 5).random()
                 Log.e("rand1", "${rand1}")
-                calculationNum1 = randNum * rand1//24*5=120 -> 10,12
+                calculationNum1 = rNum1 * rand1
                 Log.e("calculationNum1", "${calculationNum1}")
 
-                for (i in 1..randNum) {
-                    if (randNum % i == 0) {
+                for (i in 1..rNum1) {
+                    if (rNum1 % i == 0) {
                         randomlist2.add(i)
                     }
                 }
                 randomlist2.shuffle()
                 Log.e("Rand1", "$randomlist2")
-                var rand2 = rand.nextInt(60 - max) + max
-                var secRand2 = rand.nextInt(60 - max) + max
+
+                var rand2 = (30 until 60).random()
+                var secRand2 = (30 until 60).random()
                 calculationNum2 =
-                    ((calculationNum1 * randomlist2[0]) / randomlist2[1]) + rand2 - randNum
+                    ((calculationNum1 * randomlist2[0]) / randomlist2[1]) + rand2 - rNum1
                 var secCalNum2 =
-                    (((randNum * secRand1) * randomlist2[1]) / randomlist2[0]) + secRand2 - randNum
-                num1 = (randNum * secRand1).toString().plus("×").plus(randomlist2[1]).plus("÷")
+                    (((rNum1 * secRand1) * randomlist2[1]) / randomlist2[0]) + secRand2 - rNum1
+                num1 = (rNum1 * secRand1).toString().plus("×").plus(randomlist2[1]).plus("÷")
                     .plus(randomlist2[0])
                     .plus(sign).plus(secRand2).plus(sign2).plus(secCalNum2)
                 num2 =
@@ -493,27 +549,39 @@ class MainActivity : BaseActivity() {
                         .plus(sign).plus(rand2).plus(sign2).plus(calculationNum2)
 
                 randomlist2 = ArrayList()
-                randNum = rand.nextInt(max - 2) + 2
-                rand1 = rand.nextInt(5 - 1) + 1
-                secRand1 = rand.nextInt(5 - 1) + 1
+                var rNum2 = (2 until max).random()
+                num5 = randNum3.toString()
+                do {
+                    randomlist = ArrayList()
+                    for (i in 2 until 30) {
+                        num = i.toString()
+                        randomlist.add(num)
+                    }
+                    randomlist.shuffle()
+                    rNum2 = randomlist[0].toInt()
+                    num5 = randomlist[1]
+                    Log.e("randomlist", "$randomlist")
+                } while(rNum1 == rNum2 || rNum1 == num5.toInt() || rNum2 == num5.toInt())
+                rand1 = (1 until 5).random()
+                secRand1 = (1 until 5).random()
                 Log.e("rand1", "${rand1}")
-                calculationNum1 = randNum * rand1
+                calculationNum1 = rNum2 * rand1
                 Log.e("calculationNum1", "${calculationNum1}")
 
-                for (i in 1..randNum) {
-                    if (randNum % i == 0) {
+                for (i in 1..rNum2) {
+                    if (rNum2 % i == 0) {
                         randomlist2.add(i)
                     }
                 }
                 randomlist2.shuffle()
                 Log.e("Rand1", "$randomlist2")
-                rand2 = rand.nextInt(60 - max) + max
-                secRand2 = rand.nextInt(60 - max) + max
+                rand2 = (30 until 60).random()
+                secRand2 = (30 until 60).random()
                 calculationNum2 =
-                    ((calculationNum1 * randomlist2[0]) / randomlist2[1]) + rand2 - randNum
+                    ((calculationNum1 * randomlist2[0]) / randomlist2[1]) + rand2 - rNum2
                 secCalNum2 =
-                    (((randNum * secRand1) * randomlist2[1]) / randomlist2[0]) + secRand2 - randNum
-                num3 = (randNum * secRand1).toString().plus("×").plus(randomlist2[1]).plus("÷")
+                    (((rNum2 * secRand1) * randomlist2[1]) / randomlist2[0]) + secRand2 - rNum2
+                num3 = (rNum2 * secRand1).toString().plus("×").plus(randomlist2[1]).plus("÷")
                     .plus(randomlist2[0])
                     .plus(sign).plus(secRand2).plus(sign2).plus(secCalNum2)
                 num4 =
@@ -522,16 +590,14 @@ class MainActivity : BaseActivity() {
                         .plus(sign).plus(rand2).plus(sign2).plus(calculationNum2)
 
                 randomlist2 = ArrayList()
-                randNum = rand.nextInt(max - 2) + 2
-                num5 = randNum.toString()
-                rand1 = rand.nextInt(60 - 30) + 30
-                rand2 = rand.nextInt(5 - 1) + 1
+                rand1 = (30 until 60).random()
+                rand2 = (1 until 5).random()
                 Log.e("rand1", "${rand1}")
-                calculationNum1 = randNum * rand2
+                calculationNum1 = randNum3 * rand2
                 Log.e("calculationNum1", "${calculationNum1}")
 
-                for (i in 1..randNum) {
-                    if (randNum % i == 0) {
+                for (i in 1..randNum3) {
+                    if (randNum3 % i == 0) {
                         randomlist2.add(i)
                     }
                 }
